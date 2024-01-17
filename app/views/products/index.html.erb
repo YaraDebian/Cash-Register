@@ -1,0 +1,68 @@
+<h1>💰 Buy More 💰</h1>
+<h2> Hover over a product to check the latest discounts! 🎉</h2>
+<div class="grid">
+  <div class="products-grid">
+  <% @products.each do |product| %>
+    <div class="product-row">
+      <%= link_to product_path(product), class: 'product-link' do %>
+        <div class="product-box">
+          <button class="product-button" tabindex="0">
+            <h5><%= product.name %></h5>
+            <p><%= number_to_currency(product.price, unit: '€') %></p>
+          </button>
+          <div class="offer-box">
+            <% offer_message = case product.code %>
+            <% when 'GR1' %>
+              Green tea zen 🍵
+              <br>
+              Buy 1 get 1 free! 🤑
+            <% when 'SR1' %>
+              Strawberries Bulk 🍓
+              <br>
+              €4.5 off on 3 or more! 🤑
+            <% when 'CF1' %>
+              Coffee addict ☕️
+              <br>
+              30% off on 3 or more! 🤑
+            <% else %>
+              Great deal! 💰
+            <% end %>            <!-- Include offer message logic here -->
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  </div>
+
+  <div class="cart-grid">
+    <h3>Your cart 🛒 </h3>
+    <table>
+  <!-- Table Header -->
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Subtotal</th>
+    </tr>
+  </thead>
+  <!-- Table Body -->
+  <tbody>
+    <tr>
+      <td>Product A</td>
+      <td>1</td>
+      <td>$10.99</td>
+    </tr>
+    <tr>
+      <td>Product B</td>
+      <td>1</td>
+      <td>$7.99</td>
+    </tr>
+    <tr>
+      <td>Product C</td>
+      <td>1</td>
+      <td>$12.50</td>
+    </tr>
+  </tbody>
+</table>
+  <div>
+</div>

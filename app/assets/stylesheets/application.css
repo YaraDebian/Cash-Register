@@ -1,15 +1,129 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+h1 {
+    text-align: center;
+    font-family: 'Roboto', sans-serif; 
+    color: rgb(254, 254, 254);
+    font-size: 40px;
+    background-image: linear-gradient(to bottom, #009d66, rgba(1, 62, 116, 0.622));
+    padding: 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin: 0;
+}
+
+h2 {
+  text-align: center;
+  margin: 0;
+  padding: 2px;
+  font-family: 'Roboto', sans-serif; 
+  color: rgb(246, 246, 246);
+  font-size: 20px;
+  background-image: linear-gradient(to right, #e6de00, rgba(251, 142, 0, 0.822)); 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+}
+
+h3 {
+  text-align: center;
+  font-family: 'Roboto', sans-serif; 
+  color: rgb(255, 255, 255);
+  font-size: 30px;
+  margin-bottom: 2em;
+  border-radius: 6px; 
+  background-image: linear-gradient(to bottom, #004c9d, rgba(1, 62, 116, 0.622));
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+  
+.grid {
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+  }
+.cart-grid {
+    width: 100%;
+    margin: 10px;
+    border: 1px solid #ccc; 
+    padding: 20px;
+    border-radius: 6px; 
+    background-color: rgba(1, 62, 116, 0.422);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+  }
+.products-grid {
+  margin: 10px;
+    display: flex;
+    width: 100%;
+    border: 1px solid #ccc; 
+    padding: 20px;
+    border-radius: 6px; 
+    background-color: rgba(1, 141, 117, 0.364);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+  }
+  
+  .product-link {
+    text-decoration: none; 
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+  }
+
+  .product-box {
+    flex-direction: row;
+  }
+
+  .offer-box {
+    visibility: hidden; /* Hide the offer box initially */
+    opacity: 0; /* Set to 0 for a fade effect */
+    transition: visibility 0s, opacity 0.5s linear; /* Transition effect for fade in */
+    position: absolute; /* Position it absolutely within the product-box */
+    width: 160px; 
+    height: 100px;
+    padding: 20px;
+    margin-left: 10px;
+    text-align: center;
+    transition: all 0.3s ease;
+    background-image: linear-gradient(to bottom, #3fbf90, #c2f9c691);
+  }
+
+  .product-button {
+    width: 200px;
+    height: 150px;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    color: #ffffff;
+    font-size: x-large;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    background-image: linear-gradient(to right, #57A4A6, #4e8c8a);
+    cursor: pointer;
+  }
+  
+  .product-box:hover .offer-box {
+    visibility: visible; /* Show the offer box */
+    opacity: 1; /* Fade to full opacity */
+    transition-delay: 0s; /* Apply the transition effect without delay on hover */
+  }
+  .product-button:focus {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    transform: translateY(-5px);
+  }
+
+  table {
+    width: 100%; /* Take the full width of the container */
+    border-collapse: collapse; /* Collapse borders so there's no space between them */
+  }
+  
+  th, td {
+    border: 1px solid #ddd; /* Add a light border around each cell */
+    padding: 8px; /* Add some padding inside each cell */
+    text-align: left; /* Align text to the left */
+  }
+  
+  th {
+    background-color: #f4f4f4; /* Light grey background for header cells */
+    font-weight: bold; /* Make header text bold */
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f9f9f9; /* Light color for even rows */
+  }
