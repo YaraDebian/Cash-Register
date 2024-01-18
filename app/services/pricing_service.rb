@@ -1,17 +1,19 @@
 class PricingService
     RULES_MAP = {
-    'GR1' => PricingRules::GreenTeaBogo.new,
+    'GR1' => PricingRules::GreenTeaZen.new,
     'SR1' => PricingRules::StrawberriesBulk.new,
     'CF1' => PricingRules::CoffeeAddict.new
   }.freeze
 
-  def self.calculate_total_price(cart_items)
-    total_price = BigDecimal('0')
+  def self.calculate_subtotal_price(cart_item)
+    subtotal_price = BigDecimal('0')
+    rule = RULES_MAP[cart_item.product.code]
+    subtotal_price += rule ? rule.apply(cart_item.product, cart_item.quantity) : cart_item.product.price * cart_item.quantity
+    cart_item.subtotal = sprintf('%.2f', subtotal_price)
+    cart_item.save
+  end
 
-    cart_items.each do |item|
-      rule = RULES_MAP[item.product.name]
-      total_price += rule ? rule.apply(item.product, item.quantity) : item.product.price * item.quantity
-    end
-    total_price
+  def self.calculate_total_price
+    CartItem.all.map(&:subtotal).sum
   end
 end
