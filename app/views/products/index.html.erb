@@ -1,15 +1,29 @@
-<h1>💰 Buy More 💰</h1>
+<h1>✨ Buy More ✨ </h1>
 <h2> Hover over a product to check the latest discounts! 🎉</h2>
 <div class="grid">
   <div class="products-grid">
   <% @products.each do |product| %>
     <div class="product-row">
-      <%= link_to product_path(product), class: 'product-link' do %>
-        <div class="product-box">
-          <button class="product-button" tabindex="0">
+        <div class="product-container">
+          <div class="product" tabindex="0">
             <h5><%= product.name %></h5>
-            <p><%= number_to_currency(product.price, unit: '€') %></p>
-          </button>
+            <div class='price'>
+              <p><%= number_to_currency(product.price, unit: '€') %></p>
+            </div>
+          </div>
+          <div class='product-button'>
+            <%= form_with url: add_item_cart_path(@cart), method: :post, local: true do |form| %>
+              <%= form.hidden_field :product_id, value: product.id %>
+              <%= form.submit "Add 🛒", class:'product-submit' %>
+            <% end %>
+            <% cart_item = @cart.cart_items.find { |item| item.product_id == product.id } %>
+            <% if cart_item.present? && cart_item.quantity > 0 %>
+              <%= form_with url: remove_item_cart_path(@cart), method: :post, local: true do |form| %>
+                <%= form.hidden_field :product_id, value: product.id %>
+                <%= form.submit "Remove ❌", class:'product-submit' %>
+              <% end %>
+            <% end %>
+          </div>
           <div class="offer-box">
             <% offer_message = case product.code %>
             <% when 'GR1' %>
@@ -26,43 +40,44 @@
               30% off on 3 or more! 🤑
             <% else %>
               Great deal! 💰
-            <% end %>            <!-- Include offer message logic here -->
+            <% end %>            
           </div>
         </div>
-      <% end %>
     </div>
   <% end %>
   </div>
 
   <div class="cart-grid">
-    <h3>Your cart 🛒 </h3>
-    <table>
-  <!-- Table Header -->
-  <thead>
-    <tr>
-      <th>Product</th>
-      <th>Quantity</th>
-      <th>Subtotal</th>
-    </tr>
-  </thead>
-  <!-- Table Body -->
-  <tbody>
-    <tr>
-      <td>Product A</td>
-      <td>1</td>
-      <td>$10.99</td>
-    </tr>
-    <tr>
-      <td>Product B</td>
-      <td>1</td>
-      <td>$7.99</td>
-    </tr>
-    <tr>
-      <td>Product C</td>
-      <td>1</td>
-      <td>$12.50</td>
-    </tr>
-  </tbody>
-</table>
+    <h3>Your cart 🛒</h3>
+    <% if @cart.cart_items.map(&:quantity).sum > 0 %>
+      <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @cart.cart_items.each do |item| %>
+          <% if item.quantity > 0 %>
+            <tr>
+              <td><%=item.product.name%></td>
+              <td><%=item.quantity%></td>
+              <td><%=item.subtotal%></td>
+            </tr>
+          <% end %>
+        <% end %>
+        </tbody>
+      </table>
+      <div class='total-box'>
+        <div class='total-title'>Total</div>
+        <div class='total-number'><%=@total_price%></div>
+      </div>
+    <% else %>
+      <div class='empty-cart'>You dont have anything in your cart yet! </div> 
+      </br>
+      <div class='empty-cart'>Press on 'Add 🛒' to start adding products 🤩!</div>
+    <% end %>
   <div>
 </div>
