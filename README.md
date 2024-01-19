@@ -8,7 +8,7 @@ We started with 3 products (*green tea, strawberry, coffee*) and 3 discount rule
 **Discount 2:** 2/3 price discount on 3 or more coffees.\
 **Discount 3:** Price drop to 4.5€ on 3 or more strawberries.
 
-/app/assets/images/Screenshot 2024-01-19 at 3.54.47 PM.png
+<img src="/app/assets/images/screenshot.png" alt="buy more"/>
 
 ## Installation
 
@@ -48,7 +48,7 @@ You can add more products by adding them to the **/db/seeds.rb** file and runnin
 Product.create(name: 'Apple 🍎', code: 'AP1', price: 2.0)
 ```
 
-## Adding discounts
+### Adding discounts
 To extend and manage the discount rules in a maintainable way, we used a strategy pattern, where each special discount rule is encapsulated in its class. This way it's easy to add new rules without messing with any existing logic.
 
 _Example: I want to add a 20% discount over each purchase of 5 apples or more._ 💵
