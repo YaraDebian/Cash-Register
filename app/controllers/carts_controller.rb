@@ -14,6 +14,7 @@ class CartsController < ApplicationController
   end
 
   def remove_item
+    return "Product not added." if cart_item.quantity == 0
     cart_item.quantity -= 1
     cart_item.save
     PricingService.calculate_subtotal_price(cart_item)

@@ -76,6 +76,8 @@ RULES_MAP = {
 Later, when we call **rule = RULES_MAP[cart_item.product.code]**, it will know which discount rule we want and it's applied with **rule.apply(product, quantity)**.
 
 ## Future improvement opportunities
+- Add signatures
+- Add error handling
 - Create discount rules with an automation.
 - Add an autodiscovery capability to RULES_MAP.
 

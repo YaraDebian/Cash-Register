@@ -13,7 +13,7 @@ class PricingService
     cart_item.save
   end
 
-  def self.calculate_total_price
-    CartItem.all.map(&:subtotal).sum
+  def self.calculate_total_price(cart)
+    CartItem.by_cart(cart.id).map(&:subtotal).sum 
   end
 end
